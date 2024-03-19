@@ -1,4 +1,4 @@
-package se.lexicon;
+package se.lexicon.model;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -11,12 +11,17 @@ public class Car {
     private String brand;  // null
     private String model; // null
     private int year; // 0
+    private Person owner;
 
     // Constructors
     public Car(String brand, String model) {
+        this(brand, model, LocalDate.now().getYear());
+    }
+
+    public Car(String brand, String model, int year) {
         setBrand(brand);
         setModel(model);
-        this.year = LocalDate.now().getYear();
+        this.year = year;
         this.registrationNumber = generateRegistrationNumber();
     }
 
@@ -33,6 +38,11 @@ public class Car {
             throw new IllegalArgumentException("Model cannot be null or empty.");
         }
         this.model = model;
+    }
+
+    public void setOwner(Person owner) {
+        if (owner == null) throw new IllegalArgumentException("Owner should not be null.");
+        this.owner = owner;
     }
 
     public String getBrand() {
@@ -52,8 +62,19 @@ public class Car {
         return registrationNumber;
     }
 
+    public Person getOwner() {
+        return this.owner;
+    }
+
     public void displayInfo() {
-        System.out.print("Car Info: Registration Number: " + registrationNumber + ", Brand: " + brand + ", Model: " + model + ", Year: " + year + "\n");
+        System.out.print("Car Info: Registration Number: " + registrationNumber + ", Brand: " + brand + ", Model: " + model + ", Year: " + year );
+        if(owner != null){
+            System.out.print(" Owner Name: " + owner.getName());
+        } else {
+            System.out.print(" No owner assigned.");
+        }
+        System.out.println();
+
     }
 
     private String generateRegistrationNumber() {
