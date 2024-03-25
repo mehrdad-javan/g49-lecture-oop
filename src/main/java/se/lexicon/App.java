@@ -1,9 +1,6 @@
 package se.lexicon;
 
-import se.lexicon.model.Burger;
-import se.lexicon.model.Fries;
-import se.lexicon.model.Product;
-import se.lexicon.model.Size;
+import se.lexicon.model.*;
 
 public class App {
 
@@ -12,9 +9,13 @@ public class App {
         Fries defaultSmallFries = new Fries();
         Burger cheeseBurger = new Burger("Cheese Burger", 100, "CheeseBurger", true);
 
-        System.out.println("largeFries = " + largeFries);
-        System.out.println("defaultSmallFries = " + defaultSmallFries);
-        System.out.println("cheeseBurger = " + cheeseBurger);
+       // how to call addItem method of OrderItem  class ->  ?
+        OrderItem orderItem = new OrderItem();
+        orderItem.addItem(largeFries);
+        orderItem.addItem(defaultSmallFries);
+        orderItem.addItem(cheeseBurger);
+
+        orderItem.displayItems();
 
     }
 }
